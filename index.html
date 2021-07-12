@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <script src="script.js" defer></script>
+   <link rel="stylesheet" href="style.css">
+   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<title>Fetch API</title>
+</head>
+<body>
+  <style>
+    body{
+      background-color: #21D4FD;
+      background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+
+  }
+  </style>
+</br>
+  <center> <h1>Duino-coin</h1></center>
+   <br> 
+   
+   <!--Status-->
+  <div class="jumbotron">
+    <div class="row w-100">
+            <div class="col-md-3">
+                <div class="card border-info mx-sm-1 p-3">
+                    <!-- <div class="card border-info shadow text-info p-3 my-card" ><span class="fa fa-car" aria-hidden="true"></span></div> -->
+                    <div class="text-info text-center mt-3"><h4>Balance</h4></div>
+                    <div class="text-info text-center mt-2"><h1><span id="balance"></span></h1></div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card border-success mx-sm-1 p-3">
+                    <!-- <div class="card border-success shadow text-success p-3 my-card"><span class="fa fa-eye" aria-hidden="true"></span></div> -->
+                    <div class="text-success text-center mt-3"><h4>Username</h4></div>
+                    <div class="text-success text-center mt-2"><h1><span id="username"></span></div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card border-danger mx-sm-1 p-3">
+                    <!-- <div class="card border-danger shadow text-danger p-3 my-card" ><span class="fa fa-heart" aria-hidden="true"></span></div> -->
+                    <div class="text-danger text-center mt-3"><h4> Diff</h4></div>
+                    <div class="text-danger text-center mt-2"><h1><span id="diff"></span></h1></div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card border-warning mx-sm-1 p-3">
+                    <!-- <div class="card border-warning shadow text-warning p-3 my-card" ><span class="fa fa-inbox" aria-hidden="true"></span></div> -->
+                    <div class="text-warning text-center mt-3"><h4> Hashrate</h4></div> 
+                   
+                    <div class="text-warning text-center mt-2"><h1><span id="hashrate"></span></h1></div>
+                </div>
+            </div>
+            <br>
+            <div class="col-md-3">
+              <div class="card border-warning mx-sm-1 p-3">
+                  <!-- <div class="card border-warning shadow text-warning p-3 my-card" ><span class="fa fa-inbox" aria-hidden="true"></span></div> -->
+                  <div class="text-warning text-center mt-3"><h4> Accept</h4></div> 
+                 
+                  <div class="text-warning text-center mt-2"><h1><span id="accepted"></span></h1></div>
+              </div>
+          </div>
+         </div>
+      
+  </div>
+
+
+ <!-- <section id="control-center">
+     <center><button id="get-data"></button></center> 
+   </section> --> 
+<script>
+const api_url = 'https://server.duinocoin.com/users/alongkorn20';
+
+async function getdata() {
+    const response = await fetch(api_url);
+    const data = await response.json();
+    const {result,balance,username,miners,accepted,diff,hashrate} = data;
+    document.getElementById('balance').textContent= result.balance.balance.toFixed(4);
+    document.getElementById('username').textContent = result.balance.username;
+    document.getElementById('accepted').textContent= result.miners[0].accepted;
+    document.getElementById('diff').textContent= result.miners[0].diff;
+    document.getElementById('hashrate').textContent= result.miners[0].hashrate.toFixed(4);
+
+   
+         
+}
+
+getdata();
+
+setInterval(getdata, 2000);
+
+
+</script>
+    
+</body>
+</html>
+
+
