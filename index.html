@@ -325,6 +325,7 @@
 
 async function getdata() {
     const response = await fetch(api_url);
+    console.log(response);
     const data = await response.json();
     const {result,balance,username,miners,accepted,diff,hashrate,software} = data;
     document.getElementById('balance').textContent= result.balance.balance.toFixed(4);
