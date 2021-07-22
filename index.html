@@ -238,7 +238,7 @@
 					<div class="px-8">
 						<h3 class="font-bold font-bold text-gray-100">About</h3>
 						<p class="py-4 text-gray-600 text-sm">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vel mi ut felis tempus commodo nec id erat. Suspendisse consectetur dapibus velit ut lacinia. 
+							Hello. 
 						</p>
 					</div>
 				</div>
@@ -326,9 +326,8 @@
 async function getdata() {
     const response = await fetch(api_url);
     const data = await response.json();
-    console.log(data);
-    const {result,balance,username,miners,accepted,diff,hashrate} = data;
-    document.getElementById('balance').textContent= result.balance.toFixed(4);
+    const {result,balance,username,miners,accepted,diff,hashrate,software} = data;
+    document.getElementById('balance').textContent= result.balance.balance.toFixed(4);
     document.getElementById('software').textContent = result.miners[0].software;
     document.getElementById('accepted').textContent= result.miners[0].accepted;
     document.getElementById('diff').textContent= result.miners[0].diff;
