@@ -328,7 +328,7 @@ async function getdata() {
     console.log(response);
     const data = await response.json();
     const {result,balance,username,miners,accepted,diff,hashrate,software} = data;
-    document.getElementById('balance').textContent= result.balance.balance;
+    document.getElementById('balance').textContent= result.balance.balance.toFixed(4);
     document.getElementById('software').textContent = result.miners[0].software;
     document.getElementById('accepted').textContent= result.miners[0].accepted;
     document.getElementById('diff').textContent= result.miners[0].diff;
