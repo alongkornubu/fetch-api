@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Tailwind Starter Template - Night Admin Template: Tailwind Toolbox</title>
+    <title>Fetch-API</title>
     <meta name="description" content="description here">
     <meta name="keywords" content="keywords,here">
 	
@@ -143,7 +143,7 @@
                             </div>
                             <div class="flex-1 text-right md:text-center">
                                 <h5 class="font-bold uppercase text-gray-400">Hashrate</h5>
-                                <h3 class="font-bold text-3xl text-gray-600"><span id="hashrate"></span> <span class="text-pink-500"><i class="fas fa-exchange-alt"></i></span></h3>
+                                <h3 class="font-bold text-3xl text-gray-600"><span id="hashrate"></span> <span class="text-pink-500"><i class="fas fa-exchange-alt"></i></span>kH/s</h3>
                             </div>
                         </div>
                     </div>
@@ -188,7 +188,7 @@
                             </div>
                             <div class="flex-1 text-right md:text-center">
                                 <h5 class="font-bold uppercase text-gray-400">Sharetime</h5>
-                                <h3 class="font-bold text-3xl text-gray-600"><span id="sharetime"></span></h3>
+                                <h3 class="font-bold text-3xl text-gray-600"><span id="sharetime"><i></i></span>s</h3>
                             </div>
                         </div>
                     </div>
@@ -202,8 +202,8 @@
                                 <div class="rounded p-3 bg-red-600"><i class="fas fa-inbox fa-2x fa-fw fa-inverse"></i></div>
                             </div>
                             <div class="flex-1 text-right md:text-center">
-                                <h5 class="font-bold uppercase text-gray-400">Network</h5>
-                                <h3 class="font-bold text-3xl text-gray-600"><span id="status"></span><span class="text-red-500"><i class="fas fa-caret-up"></i></span></h3>
+                                <h5 class="font-bold uppercase text-gray-400">Miners</h5>
+                                <h3 class="font-bold text-3xl text-gray-600"><span id="miners"></span><span class="text-red-500"><i class="fas fa-caret-up"></i></span></h3>
                             </div>
                         </div>
                     </div>
@@ -328,11 +328,12 @@ async function getdata() {
     const data = await response.json();
     console.log(response);
     const {result,balance,username,miners,accepted,diff,hashrate,software} = data;
-    document.getElementById('balance').textContent= result.balance.balance.toFixed(4);
-    document.getElementById('sharetime').textContent = result.miners[0].sharetime;
+    document.getElementById('balance').textContent= result.balance.balance.toFixed(2);
+    document.getElementById('sharetime').textContent = result.miners[0].sharetime.toFixed(2);
     document.getElementById('accepted').textContent= result.miners[0].accepted;
     document.getElementById('diff').textContent= result.miners[0].diff;
-    document.getElementById('hashrate').textContent= result.miners[0].hashrate.toFixed(2);
+    document.getElementById('hashrate').textContent= result.miners[0].hashrate;
+    document.getElementById('miners').textContent= result.miners[0].identifier;
 
    
          
@@ -342,30 +343,6 @@ getdata();
 
 setInterval(getdata, 2000);
 
-let status = document.getElementById("status");
-			
-            window.addEventListener('load', function(e) {
-                if (navigator.onLine) {
-                    status.innerHTML = "Network is online";
-                    status.classList.add("success");
-                } else {
-                    status.innerHTML = "User is offline";
-                    status.classList.remove("success");
-                    status.classList.add("error");
-                }
-            }, false);
-            
-            window.addEventListener('online', function(e) {
-                status.innerHTML = "Network back online";
-                status.classList.remove("error");
-                status.classList.add("success");
-            }, false);
-            
-            window.addEventListener('offline', function(e) {
-                status.innerHTML = "Network went offline";
-                status.classList.remove("success");
-                status.classList.add("error");
-            }, false);
 
 </script>
 
