@@ -207,12 +207,10 @@
                             </div>
                         </div>
                     </div>
+                    <center><p1><span id="software"></span></p1></center>
                     <!--/Metric Card-->
                 </div>
             </div>
-
-		
-                            <p class="py-2"><a href="#" class="text-white">See More issues...</a></p>
 
                         </div>
                     </div>
@@ -333,6 +331,7 @@ async function getdata() {
     document.getElementById('accepted').textContent= result.miners[0].accepted;
     document.getElementById('diff').textContent= result.miners[0].diff;
     document.getElementById('hashrate').textContent= result.miners[0].hashrate;
+    document.getElementById('software').textContent= result.miners[0].software;
     document.getElementById('pool').textContent= result.miners[0].pool;
 
    
